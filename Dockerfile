@@ -7,7 +7,8 @@ ENV LANG="en_US.UTF-8"
 
 RUN apt-get update \
     && apt-get install -y ssh locales borgbackup \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 ENTRYPOINT ["borg"]
 CMD ["--version"]
