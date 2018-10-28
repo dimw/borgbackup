@@ -12,7 +12,7 @@ Init repository:
 docker run \
   -e BORG_PASSPHRASE=secret-passphrase \
   -v /path/to/private-ssh-key:/borgbackup/id_rsa \
-  repository.gitlab.com/nl2go/ingfrastructure/borgbackup \
+  dimw/borgbackup \
   init --encryption=repokey ssh://user123@user123.your-storagebox.de/./backup_$(hostname)
 ```
 
@@ -24,7 +24,7 @@ docker run \
   -v /path/to/private-ssh-key:/borgbackup/id_rsa \
   -v /folder1:/folder1 \
   -v /folder2:/folder2 \
-  repository.gitlab.com/nl2go/ingfrastructure/borgbackup \
+  dimw/borgbackup \
   create -v --stats ssh://user123@user123.your-storagebox.de/./backup_$(hostname)::'{now:%Y-%m-%d_%H:%M}' \
   /folder1 /folder2
 ```
@@ -35,7 +35,7 @@ Prune old backups:
 docker run \
   -e BORG_PASSPHRASE=secret-passphrase \
   -v /path/to/private-ssh-key:/borgbackup/id_rsa \
-  repository.gitlab.com/nl2go/ingfrastructure/borgbackup \ 
+  dimw/borgbackup \ 
   borg prune -v --list --keep-daily=7 ssh://user123@user123.your-storagebox.de/./backup_$(hostname)
 ```
 
